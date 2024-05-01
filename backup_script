@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#Authour: u/gdonn
+#Created: 29/04/23
+#Modified: 29/04/23
+#Description:
+#Usage: Test to backup all files in home directory into a tar file
+
+#tar command backs up home directory to ​~/bash_course​ folder
+tar -cvf ~/bash_course/my_backup_"$(date +%d-%m-%Y_%H-%M-%S)".tar ~/* 2>/dev/null
