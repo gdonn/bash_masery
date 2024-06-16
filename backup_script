@@ -7,4 +7,20 @@
 #Usage: Test to backup all files in home directory into a tar file
 
 #tar command backs up home directory to ​~/bash_course​ folder
-tar -cvf ~/bash_course/my_backup_"$(date +%d-%m-%Y_%H-%M-%S)".tar ~/* 2>/dev/null
+
+#version 2.0 will direct the user that the files will be backed up, will ensure the users name is capatilised and advise them of the working directory, using variables and substitutions.
+
+#Here I set the varible user and called it in my echo, making sure that the first letter is capatilised, next I set the variable currentdir and used a substitution to use the pwd (Print working directory) command, I advised the user in the echo that this is where the backup will be saved and where it's being run from.
+
+name=$USER
+currentdir=$(pwd)
+echo "Hello,${name^} , I will now backup your data, you are running this script from, $currentdir "
+
+#Here I edited the tar command to remove the v for verbose mode so the user can easily see my messages and reused the currentdir variable instead of explicitly saying what directory, this makes the script able to run in any directory on any system. I also fixed an error where lowercase m which refers to month, and changed instead to M for minute in the date command
+
+tar -cf $currentdir/my_backup_"$(date +%d-%M-%Y_%H-%M-%S)".tar $HOME/* 2>/dev/null
+
+#I added an echo here to assure the backup was completed. 
+
+echo "Backup created successfully!"
+exit 0
